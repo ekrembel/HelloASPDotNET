@@ -1,0 +1,48 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+@if (@ViewBag.name == "")
+{
+    <h1 style="text-align: center; padding-top: 50px; color= red">
+        Welcome to my app, world!
+    </h1>
+}
+else
+{
+
+    @if (@ViewBag.Language == "en")
+    {
+        <h1 style="text-align: center; padding-top: 50px; color: blueviolet">
+            Welcome to my app, @ViewBag.name!
+        </h1>
+    }
+    else if (@ViewBag.Language == "it")
+    {
+        <h1 style="text-align: center; padding-top: 50px; color: cyan">
+            Benvenuti nella mia domanda, @ViewBag.name!
+        </h1>
+    }
+    else if (@ViewBag.Language == "nl")
+    {
+        <h1 style="text-align: center; padding-top: 50px; color:green">
+            Welkom bij mijn aanvraag, @ViewBag.name!
+        </h1>
+    }
+    else if (@ViewBag.Language == "tr")
+    {
+        <h1 style="text-align: center; padding-top: 50px; color:orange">
+            Uygulamama hos geldin, @ViewBag.name!
+        </h1>
+    }
+    else
+    {
+        <h1 style="text-align: center; padding-top: 50px; color:dimgray">
+            Bienvenido a mi solicitud, @ViewBag.name!
+        </h1>
+    }
+}
+

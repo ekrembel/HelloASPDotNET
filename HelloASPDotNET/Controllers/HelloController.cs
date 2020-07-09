@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HelloASPDotNET.Controllers
 {
-    [Route("/helloworld")]
     public class HelloController : Controller
     {
 
@@ -16,29 +15,18 @@ namespace HelloASPDotNET.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            string html = "<div style='text-align: center; margin-top: 50px;'>" +
-                "<form method='post' action='/helloworld/'>" +
-                "<input type='text' name='name'>" +
-                "<select id='lang' name='lang'>" +
-                    "<option value='en' >English</option>" +
-                    "<option value='it' >Italian</option>" +
-                    "<option value='nl' >Dutch</option>" +
-                    "<option value='tr' >Turkish</option>" +
-                    "<option value='es' >Spanish</option>" +
-                "</select>" +
-                "<input type='submit' value='Greet me'>" +
-                "</form>" +
-                "</div>";
-            return Content(html, "text/html");
+            return View();
         }
 
         // GET: /hello/welcome
-        [HttpGet("welcome/{name?}")]
+       
         [HttpPost]
-        public IActionResult Welcome(string name, string lang)
+        [Route("/hello")]
+        public IActionResult Hello(string name, string lang)
         {
-            string message = CreateMessage(name, lang);
-            return Content(message, "text/html");
+            ViewBag.name = name;
+            ViewBag.language = lang;
+            return View();
         }
 
         public static string CreateMessage(string name, string lang)
@@ -46,29 +34,29 @@ namespace HelloASPDotNET.Controllers
             List<string> message = new List<string>();
             if (lang == "en")
             {
-                message.Add("<h1 style='text-align: center; padding-top: 50px;'>Welcome to my app, " + name + "!</h1>");
+                message.Add("Welcome to my app, " + name + "!");
             }
             else if (lang == "it")
             {
-                message.Add("<h1 style='text-align: center; padding-top: 50px; color: green;'>Benvenuti nella mia domanda, " + name + "!</h1>");
+                message.Add("Benvenuti nella mia domanda, " + name + "!");
             }
             else if (lang == "nl")
             {
-                message.Add("<h1  style='text-align: center; padding-top: 50px; color: red;'>Welkom bij mijn aanvraag, " + name + "!</h1>");
+                message.Add("Welkom bij mijn aanvraag, " + name + "!");
             }
             else if (lang == "tr")
             {
-                message.Add("<h1 style='text-align: center; padding-top: 50px; color: blue;'>Uygulamama hos geldin, " + name + "!</h1>");
+                message.Add("Uygulamama hos geldin, " + name + "!");
             }
             else if (lang == "es")
             {
-                message.Add("<h1 style='text-align: center; padding-top: 50px; color: yellow;'>Bienvenido a mi solicitud, " + name + "!</h1>");
+                message.Add("Bienvenido a mi solicitud, " + name + "!");
             }
             if (message.Count > 0)
             {
                 return message[0];
             }
-            return "<h1>Welcome to my app, world!</h1>";
+            return "Welcome to my app, world!";
         }
     }
 }
